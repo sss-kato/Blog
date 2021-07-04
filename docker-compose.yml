@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+        django:
+                build: ./Dockerfile
+                ports:
+                        - 8080:80
+                volumes:
+                        - ./:/usr/local/src/blog
+                tty: true
+                working_dir: '/usr/local/src/blog'
