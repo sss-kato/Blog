@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail</title>
+    <title>Details</title>
 </head>
+
 <body>
-    {{blog.title}}
-    {{blog.text}}
-    {{blog.created_datetime}}
-    {{blog.updated_datetime}}
-    <a href="{% url 'blogs:index' %}"> Return Top</a>
-    
+    <h1 style="text-align: center;"> {{ blog.title }}</h1>
+    <div style="width: 70%; margin: 0px auto;">
+        <div style="margin: 60px 20px;">
+            {{blog.text}}
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="{% url 'blogs:edit' blog.id %}">
+                <button class="btn">Edit</button>
+            </a>
+            <form method="POST" action="{% url 'blogs:delete' blog.id %}">{% csrf_token %}
+                <button class="btn" type="submit" onclick='return confirm("Do you delete this?");'>Delete</button>
+            </form>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="{% url 'blogs:index' %}">Return Top</a>
+        </div>
+    </div>
 </body>
+
 </html>
